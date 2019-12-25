@@ -1,0 +1,471 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<windows.h>
+struct web
+{
+char name[20],pass[20];
+};
+int n;
+void login(void);
+void signin(void);
+void display(void);
+void gfc(void);
+void vojon(void);
+void rosh(void);
+void pizzaholic(void);
+void kfc(void);
+void want(void);
+
+void login()
+{
+    FILE *ptr;
+    char name[20];
+    char password[20];
+    char path[]="E:\\ssh project\\";
+    char slsh[]="\\";
+    char txt[]=".txt";
+    char savedPassword[20];
+
+    int p=0;
+
+    system("cls");
+    printf("\n\n\n\t\t\t------ LOG IN ------\n");
+    printf("\t\t\tName:");
+    scanf("%s",name);
+
+    strcat(path,name);
+    strcat(path,slsh);
+    strcat(path,name);
+    strcat(path,txt);
+
+
+    ptr = fopen(path,"r");
+    if(ptr==NULL)
+    {
+        system("cls");
+        printf("\n\n\t\t\tUser not found\n");
+
+    }
+    else
+    {
+        fflush(stdin);
+        printf("\n\t\t\tPassword:");
+        do
+        {
+            password[p]=getch();
+            if(password[p]!='\r')
+            {
+                printf("*");
+            }
+            p++;
+        }
+        while(password[p-1]!='\r');
+        password[p-1]='\0';
+
+
+        fscanf(ptr,"%s",savedPassword);
+        system("cls");
+        if(strcmp(savedPassword,password)==0)
+        {
+            printf("\n\n\n\t\t\tYou are sucsessfully loged-in");
+            for(int i=0;i<3;i++)
+            {
+                printf(".");
+                Sleep(800);
+
+                display();
+            }
+        }
+        else
+        {
+            printf("\n\t\t\tPassword wrong\n");
+        }
+    }
+
+
+
+}
+void signin()
+{
+    int i=0,n;
+    FILE *ptr;
+    int check;
+    char name[20];
+    char password[20];
+    char path[]="E:\\ssh project\\";
+    char slsh[]="\\";
+    char txt[]=".txt";
+    char null[]="";
+    int p = 0;
+    system("cls");
+
+    do
+    {
+        i=0;
+        printf("\n\n\n\t\t\t------ Sign IN ------\n");
+        printf("\t\t\tName:");
+        scanf("%s",name);
+        fflush(stdin);
+
+        strcat(path,name);
+        check = mkdir(path);
+        strcat(path,slsh);
+        strcat(path,name);
+        strcat(path,txt);
+
+        if (check)
+        {
+            printf("\n\n\t\t\tName already exits\n");
+            i++;
+            getch();
+            system("cls");
+            free(name);
+            free(path);
+
+        }
+
+
+        fflush(stdin);
+
+    }
+
+
+    while(i==1);
+
+
+    ptr = fopen(path,"w");
+    printf("\n\t\t\tPassword:");
+    do
+    {
+        password[p]=getch();
+        if(password[p]!='\r')
+        {
+            printf("*");
+        }
+        p++;
+    }
+    while(password[p-1]!='\r');
+    password[p-1]='\0';
+
+
+    fprintf(ptr,"%s",password);
+    printf("\n\n\t\tYou are successfully registered");
+    display();
+
+    fclose(ptr);
+
+
+
+
+}
+void main()
+{
+     int n;
+    printf("\n\n\n\t\t\t-------  WELL  COME  to FOOD HEAVEN  ------\n");
+    printf("\n\n\t\t\t\t\t1. Login\n");
+    printf("\t\t\t\t\t2. New here?Sign Up\n");
+    printf("\t\t\t\t\t______________________\n");
+    printf("\t\t\t\t\tEnter your choice:");
+    scanf("%d",&n);
+
+    switch(n)
+    {
+    case 1:
+    {
+        login();
+        break;
+    }
+    case 2:
+    {
+        signin();
+        break;
+    }
+    }
+
+}
+
+void want()
+{
+    printf("\n\n\t\t\twant something else..??\n \t 1.YES\t\t\t2.NO");
+    printf("\n\n\n\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&n);
+    if(n==1)
+    {
+        display();
+    }
+    else
+    {
+        printf("\n\t\t\t\t\tTHANK YOU");
+    }
+
+}
+
+void display()
+{
+    printf("\n\n\n\t\t\t\tNames of Resturent: ");
+    printf("\n\n\n\t\t\t\t1.GFC\n\t\t\t\t2.VOJON\n\t\t\t\t3.ROSH\n\t\t\t\t4.PIZZAHOLIC\n\t\t\t\t5.KFC ");
+    printf("\n\n\n\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&n);
+        switch(n)
+  {
+    case 1:
+        gfc();
+        break;
+    case 2:
+        vojon();
+        break;
+    case 3:
+        rosh();
+        break;
+     case 4:
+        pizzaholic();
+        break;
+    case 5:
+        kfc();
+        break;
+    default: printf("\n\n\t\t\t\tNO MATCH FOUND");
+    }
+}
+
+void gfc()
+{
+
+    printf("1.. Hamburger\t80tk ​\n2. Cheeseburger​\t130tk\n3. Fries​\t50tk\n4. Soda​\t30tk\n5. Ice cream Sundae​\t100tk\n6. chikenburger​ \t80tk\n7. doubbleCheeseburger​\t200tk\n8. wages​\t80tk\n9. Shake​\t120tk\n10. coco vanilla​\t150tk");
+    printf("\n\n\n\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&n);
+     switch(n)
+  {
+    case 1:
+        printf(" your Hamburger ​is getting ready for you");
+        want ();
+        break;
+    case 2:
+        printf(" your Cheeseburger ​is getting ready for you");
+        want ();
+        break;
+    case 3:
+        printf(" your Fries ​is getting ready for you");
+         want ();
+        break;
+    case 4:
+        printf(" your Soda ​is getting ready for you");
+         want ();
+        break;
+    case 5:
+        printf(" your Ice cream Sundae ​is getting ready for you");
+         want ();
+        break;
+    case 6:
+        printf(" your chikenburger ​is getting ready for you");
+         want ();
+        break;
+    case 7:
+        printf(" your doubbleCheeseburger​ ​is getting ready for you");
+         want ();
+        break;
+    case 8:
+        printf(" your wages ​is getting ready for you");
+         want ();
+        break;
+    case 9:
+        printf(" your Shake ​is getting ready for you");
+         want ();
+        break;
+    case 10:
+        printf(" your coco vanilla​ ​is getting ready for you");
+         want ();
+        break;
+    default: printf("\n\n\t\t\t\tNO MATCH FOUND");
+    }
+}
+
+    void vojon()
+{
+
+    printf("1.. Mutton kacchi\t180tk ​\n2.Beef kacchi\t130tk\n3.Beef teheri​\t90tk\n4.Morog polaw​\t130tk\n5.Chiken khichuri​\t50tk\n6. Chiken sahi khichuri \t90tk\n7. Borhani(per-glass)\t30tk");
+    printf("\n\n\n\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&n);
+     switch(n)
+  {
+    case 1:
+        printf(" your Mutton kacchi ​is getting ready for you");
+        want ();
+        break;
+    case 2:
+        printf(" your Beef kacchi ​is getting ready for you");
+        want ();
+        break;
+    case 3:
+        printf(" your Beef teheri ​is getting ready for you");
+         want ();
+        break;
+    case 4:
+        printf(" your Morog polaw ​is getting ready for you");
+         want ();
+        break;
+    case 5:
+        printf(" your Chiken khichuri ​is getting ready for you");
+         want ();
+        break;
+    case 6:
+        printf(" your Chiken sahi khichuri ​is getting ready for you");
+         want ();
+        break;
+    case 7:
+        printf(" your Borhani​ ​is getting ready for you");
+         want ();
+        break;
+
+    default: printf("\n\n\t\t\t\tNO MATCH FOUND");
+    }
+}
+
+      void rosh()
+{
+
+    printf("1.cake\t80tk ​\n2.laddu\t30tk\n3.shondesh\t40tk\n4.Chocolate pestry​\t130tk\n5.Vanila pesty​\t100tk\n6. Black forest \t190tk\n7. White forest\t130tk");
+    printf("\n\n\n\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&n);
+     switch(n)
+  {
+    case 1:
+        printf(" your cake ​is getting ready for you");
+        want ();
+        break;
+    case 2:
+        printf(" your  laddu ​is getting ready for you");
+        want ();
+        break;
+    case 3:
+        printf(" your  shondesh ​is getting ready for you");
+         want ();
+        break;
+    case 4:
+        printf(" your chocolate pestry ​is getting ready for you");
+         want ();
+        break;
+    case 5:
+        printf(" your vanila pestry ​is getting ready for you");
+         want ();
+        break;
+    case 6:
+        printf(" your black forest ​is getting ready for you");
+         want ();
+        break;
+    case 7:
+        printf(" your white forest ​is getting ready for you");
+         want ();
+        break;
+
+    default: printf("\n\n\t\t\t\tNO MATCH FOUND");
+    }
+}
+ void pizzaholic()
+{
+
+    printf("1.. American Hamburger\t180tk ​\n2.Italian Cheeseburger​\t220tk\n3.Maxican pizza\t350tk\n4. Italian deep dish pizza\t430tk\n5. Pizza​burg\t300tk\n6. chiken BBQ pizza \t380tk\n7. smoky pizza​\t200tk\n8. Doubble decar burger​\t280tk\n9.mini chese burg\t60tk\n10.pasta​\t250tk");
+    printf("\n\n\n\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&n);
+     switch(n)
+  {
+    case 1:
+        printf(" your American Hamburger ​is getting ready for you");
+        want ();
+        break;
+    case 2:
+        printf(" your Italian Cheeseburger ​is getting ready for you");
+        want ();
+        break;
+    case 3:
+        printf(" your Maxican pizza ​is getting ready for you");
+         want ();
+        break;
+    case 4:
+        printf(" your Italian deep dish pizza ​is getting ready for you");
+         want ();
+        break;
+    case 5:
+        printf(" your Pizza​burg ​is getting ready for you");
+         want ();
+        break;
+    case 6:
+        printf(" your chiken BBQ pizza ​is getting ready for you");
+         want ();
+        break;
+    case 7:
+        printf(" your smoky pizza​ ​is getting ready for you");
+         want ();
+        break;
+    case 8:
+        printf(" your Doubble decar burger ​is getting ready for you");
+         want ();
+        break;
+    case 9:
+        printf(" your mini chese burg ​is getting ready for you");
+         want ();
+        break;
+    case 10:
+        printf(" your pasta​ ​is getting ready for you");
+         want ();
+        break;
+    default: printf("\n\n\t\t\t\tNO MATCH FOUND");
+    }
+
+}
+ void kfc()
+{
+
+    printf("1.Crispy chiken\t180tk ​\n2.Cheese blust​\t220tk\n3.Maxican pizza\t350tk\n4. Italian deep dish pizza\t430tk\n5. Pizza​burg\t300tk\n6. chiken BBQ pizza \t380tk\n7. smoky pizza​\t200tk\n8. Doubble decar burger​\t280tk\n9.mini chese burg\t60tk\n10.pasta​\t250tk");
+    printf("\n\n\n\t\t\t\tENTER YOUR CHOICE: ");
+    scanf("%d",&n);
+     switch(n)
+  {
+    case 1:
+        printf(" your Crispy chiken ​is getting ready for you");
+        want ();
+        break;
+    case 2:
+        printf(" your Cheese blust ​is getting ready for you");
+        want ();
+        break;
+    case 3:
+        printf(" your Maxican pizza ​is getting ready for you");
+         want ();
+        break;
+    case 4:
+        printf(" your Italian deep dish pizza ​is getting ready for you");
+         want ();
+        break;
+    case 5:
+        printf(" your Pizza​burg ​is getting ready for you");
+         want ();
+        break;
+    case 6:
+        printf(" your chiken BBQ pizza ​is getting ready for you");
+         want ();
+        break;
+    case 7:
+        printf(" your smoky pizza​ ​is getting ready for you");
+         want ();
+        break;
+    case 8:
+        printf(" your Doubble decar burger ​is getting ready for you");
+         want ();
+        break;
+    case 9:
+        printf(" your mini chese burg ​is getting ready for you");
+         want ();
+        break;
+    case 10:
+        printf(" your pasta​ ​is getting ready for you");
+         want ();
+        break;
+    default: printf("\n\n\t\t\t\tNO MATCH FOUND");
+    }
+
+
+
+}
+
